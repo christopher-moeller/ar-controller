@@ -7,3 +7,6 @@ bin-int/
 # XCode Files
 **.xcworkspace
 **.xcodeproj
+
+# VS Code
+.vscode

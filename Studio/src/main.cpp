@@ -1,9 +1,22 @@
 #include <iostream>
-#include "Engine.h"
+#include "Harmony.h"
+
+
+class Sandbox : public Harmony::Application {
+    
+};
 
 int main() {
-    std::cout << GetTestInt() << std::endl;
     
-    auto console = spdlog::stdout_color_mt("console");
-    console->info("Welcome to spdlog!");
+    Harmony::Log::Init();
+    //Harmony::Log::GetCoreLogger()->warn("Initialized Log!");
+    //Harmony::Log::GetClientLogger()->info("Hello");
+    HY_CORE_ERROR("This is just a test");
+    
+    int a = 5;
+    HY_INFO("Hello Var={0}", a);
+
+    Sandbox* sandbox = new Sandbox();
+    sandbox->Run();
+    delete sandbox;
 }
