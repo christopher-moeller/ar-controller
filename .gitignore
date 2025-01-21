@@ -1,0 +1,9 @@
+# Binaries
+
+**/bin/
+bin-int/
+
+
+# XCode Files
+**.xcworkspace
+**.xcodeproj
