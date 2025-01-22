@@ -1,4 +1,3 @@
 #pragma once
 
-#include "Harmony/Application.h"
-#include "Harmony/Log.h"
+#include "Harmony/Base.h"

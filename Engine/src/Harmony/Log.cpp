@@ -14,6 +14,7 @@ namespace Harmony {
 
         s_ClientLogger = spdlog::stderr_color_mt("APP");
         s_ClientLogger->set_level(spdlog::level::trace);
+        
     }
 
 }
