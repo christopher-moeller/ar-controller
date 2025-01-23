@@ -5,6 +5,8 @@
 #include "Harmony/Events/KeyEvent.h"
 #include "Harmony/Events/MouseEvent.h"
 
+#include <glad/glad.h>
+
 
 namespace Harmony {
 
@@ -37,12 +39,21 @@ namespace Harmony {
         if(!s_GLFWInitialized) {
             int success = glfwInit();
             HY_CORE_ASSERT(success, "Could not initialize GLFW!");
+            glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+            glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+            glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+            glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
             glfwSetErrorCallback(GLFWErrorCallback);
             s_GLFWInitialized = true;
         }
         
         m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
         glfwMakeContextCurrent(m_Window);
+        
+        int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+        HY_CORE_ASSERT(status, "Failed to initilize Glad!");
+        
+        
         glfwSetWindowUserPointer(m_Window, &m_Data);
         SetVSync(true);
         

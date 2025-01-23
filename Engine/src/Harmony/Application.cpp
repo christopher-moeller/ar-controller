@@ -1,6 +1,7 @@
 #include "Application.h"
 
 #include "Base.h"
+#include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
 namespace Harmony {
@@ -49,6 +50,8 @@ namespace Harmony {
             
             m_Window->OnUpdate();
         }
+        
+        glfwTerminate();
     }
 
     bool Application::OnWindowClose(WindowCloseEvent& e) {

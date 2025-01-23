@@ -10,6 +10,8 @@ workspace "ARController"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}"
 
+include "Engine/vendor/Glad"
+
 project "Engine"
     location "Engine"
     kind "StaticLib"
@@ -19,20 +21,29 @@ project "Engine"
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+    defines {
+        "GLFW_INCLUDE_NONE"
+    }
+
     files 
     { 
         "%{prj.name}/src/**.h", 
-        "%{prj.name}/src/**.cpp" 
+        "%{prj.name}/src/**.cpp",
     }
 
     includedirs
     {
         "%{prj.name}/src",
         "%{prj.name}/vendor/GLFW/include",
-        "%{prj.name}/vendor/spdlog/include"
+        "%{prj.name}/vendor/spdlog/include",
+        "%{prj.name}/vendor/Glad/include"
     }
 
-    externalincludedirs { "%{prj.name}/vendor/spdlog/include", "%{prj.name}/vendor/GLFW/include"  } -- This is needed for XCode
+    externalincludedirs { 
+        "%{prj.name}/vendor/spdlog/include", 
+        "%{prj.name}/vendor/GLFW/include",
+        "%{prj.name}/vendor/Glad/include"
+    } -- This is needed for XCode
 
     libdirs {
         "%{prj.name}/vendor/GLFW/lib"
@@ -40,6 +51,7 @@ project "Engine"
 
     links {
         "GLFW",
+        "Glad",
         "OpenGL.framework"            -- OpenGL on macOS
     }
     
@@ -69,16 +81,20 @@ project "Studio"
     files 
     { 
         "%{prj.name}/src/**.h", 
-        "%{prj.name}/src/**.cpp" 
+        "%{prj.name}/src/**.cpp",
     }
 
     includedirs
     {
         "Engine/vendor/spdlog/include",
+        "Engine/vendor/Glad/include",
         "Engine/src"
     }
 
-    externalincludedirs { "Engine/vendor/spdlog/include"  } -- This is needed for XCode
+    externalincludedirs { 
+        "Engine/vendor/spdlog/include",
+        "Engine/vendor/Glad/include"
+      } -- This is needed for XCode
 
     libdirs { 
         "bin/" .. outputdir .. "/Engine",
