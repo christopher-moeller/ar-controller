@@ -32,7 +32,7 @@ namespace Harmony {
         float m_MouseX, m_MouseY;
     };
 
-    class MouseScolledEvent : Event {
+    class MouseScolledEvent : public Event {
         
     public:
         MouseScolledEvent(const float xOffset, const float yOffset) : m_XOffset(xOffset), m_YOffset(yOffset) {}
