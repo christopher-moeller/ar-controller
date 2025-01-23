@@ -39,6 +39,8 @@ namespace Harmony {
             return GetCategoryFlags() & static_cast<int>(category);
         }
         
+        inline bool IsHandled() { return m_Handled; }
+        
     protected:
         bool m_Handled = false;
     };
