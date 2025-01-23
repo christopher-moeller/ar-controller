@@ -1,5 +1,8 @@
 #pragma once
 
+#include "Base.h"
+#include "Window.h"
+
 
 namespace Harmony {
 
@@ -10,6 +13,10 @@ namespace Harmony {
         virtual ~Application();
 
         void Run();
+        
+    private:
+        std::unique_ptr<Window> m_Window;
+        bool m_Running = true;
     };
 
 }

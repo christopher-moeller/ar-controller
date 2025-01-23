@@ -28,10 +28,20 @@ project "Engine"
     includedirs
     {
         "%{prj.name}/src",
+        "%{prj.name}/vendor/GLFW/include",
         "%{prj.name}/vendor/spdlog/include"
     }
 
-    externalincludedirs { "%{prj.name}/vendor/spdlog/include"  } -- This is needed for XCode
+    externalincludedirs { "%{prj.name}/vendor/spdlog/include", "%{prj.name}/vendor/GLFW/include"  } -- This is needed for XCode
+
+    libdirs {
+        "%{prj.name}/vendor/GLFW/lib"
+    }
+
+    links {
+        "GLFW",
+        "OpenGL.framework"            -- OpenGL on macOS
+    }
     
     filter "configurations:Debug"
         defines { "AR_DEBUG" }
@@ -70,10 +80,15 @@ project "Studio"
 
     externalincludedirs { "Engine/vendor/spdlog/include"  } -- This is needed for XCode
 
-    libdirs { "bin/" .. outputdir .. "/Engine" }
+    libdirs { 
+        "bin/" .. outputdir .. "/Engine",
+        "Engine/vendor/GLFW/lib"
+     }
     links
     {
-        "Engine"
+        "Engine",
+        "GLFW",
+        "OpenGL.framework"            -- OpenGL on macOS
     }
     
     filter "configurations:Debug"
