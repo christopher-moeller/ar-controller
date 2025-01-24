@@ -23,7 +23,6 @@ namespace Harmony {
     public:
         using EventCallbackFn = std::function<void(Event&)>;
 
-
         virtual void OnUpdate() = 0;
 
         virtual unsigned int GetWidth() const = 0;
@@ -34,6 +33,8 @@ namespace Harmony {
         virtual bool IsVSync() const = 0;
 
         static Window* Create(const WindowProps& props = WindowProps());
-    };    
+        
+        virtual void* GetNativeWindow() const = 0;
+    };
 
 }

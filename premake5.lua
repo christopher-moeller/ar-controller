@@ -11,6 +11,7 @@ workspace "ARController"
 outputdir = "%{cfg.buildcfg}-%{cfg.system}"
 
 include "Engine/vendor/Glad"
+include "Engine/vendor/ImGui"
 
 project "Engine"
     location "Engine"
@@ -36,13 +37,17 @@ project "Engine"
         "%{prj.name}/src",
         "%{prj.name}/vendor/GLFW/include",
         "%{prj.name}/vendor/spdlog/include",
-        "%{prj.name}/vendor/Glad/include"
+        "%{prj.name}/vendor/Glad/include",
+        "%{prj.name}/vendor/ImGui/ImGui", 
+        "%{prj.name}/vendor/ImGui/ImGui/backends"
     }
 
     externalincludedirs { 
         "%{prj.name}/vendor/spdlog/include", 
         "%{prj.name}/vendor/GLFW/include",
-        "%{prj.name}/vendor/Glad/include"
+        "%{prj.name}/vendor/Glad/include",
+        "%{prj.name}/vendor/ImGui/ImGui", 
+        "%{prj.name}/vendor/ImGui/ImGui/backends"
     } -- This is needed for XCode
 
     libdirs {
@@ -52,6 +57,7 @@ project "Engine"
     links {
         "GLFW",
         "Glad",
+        "ImGui",
         "OpenGL.framework"            -- OpenGL on macOS
     }
     
@@ -88,12 +94,16 @@ project "Studio"
     {
         "Engine/vendor/spdlog/include",
         "Engine/vendor/Glad/include",
-        "Engine/src"
+        "Engine/src",
+        "%{prj.name}/vendor/ImGui/ImGui", 
+        "%{prj.name}/vendor/ImGui/ImGui/backends"
     }
 
     externalincludedirs { 
         "Engine/vendor/spdlog/include",
-        "Engine/vendor/Glad/include"
+        "Engine/vendor/Glad/include",
+        "%{prj.name}/vendor/ImGui/ImGui", 
+        "%{prj.name}/vendor/ImGui/ImGui/backends"
       } -- This is needed for XCode
 
     libdirs { 

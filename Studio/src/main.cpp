@@ -9,11 +9,11 @@ public:
     }
     
     void OnUpdate() override {
-        HY_INFO("ExampleLayer::Update");
+        //HY_INFO("ExampleLayer::Update");
     }
     
     void OnEvent(Harmony::Event& event) override {
-        HY_TRACE("{0}", event.ToString());
+        //HY_TRACE("{0}", event.ToString());
     }
 };
 
@@ -23,6 +23,7 @@ class Sandbox : public Harmony::Application {
 public:
     Sandbox() {
         PushLayer(new ExampleLayer());
+        PushLayer(new Harmony::ImGuiLayer());
     }
     
 };

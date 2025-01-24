@@ -28,6 +28,10 @@ namespace Harmony {
         Shutdown();
     }
 
+    void* MacWindow::GetNativeWindow() const {
+        return this->m_Window;
+    }
+
     void MacWindow::Init(const WindowProps &props) {
         
         m_Data.Title = props.Title;
@@ -42,13 +46,15 @@ namespace Harmony {
             glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
             glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
             glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-            glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+            glfwWindowHint(GLFW_COCOA_RETINA_FRAMEBUFFER, GL_FALSE); // to avoid strange baviour on retina displays
             glfwSetErrorCallback(GLFWErrorCallback);
             s_GLFWInitialized = true;
         }
         
         m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
         glfwMakeContextCurrent(m_Window);
+        
+        HY_CORE_INFO("{0}, {1}", props.Width, props.Height);
         
         int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
         HY_CORE_ASSERT(status, "Failed to initilize Glad!");
@@ -59,6 +65,11 @@ namespace Harmony {
         
         
         // Set GLFW Callbacks
+        glfwSetFramebufferSizeCallback(m_Window, [](GLFWwindow* window, int width, int height) {
+            HY_CORE_INFO("{0}, {1}", width, height);
+            glViewport(0, 0, 1280, 720);
+        });
+        
         glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height) {
             WindowData& data = *(WindowData*) glfwGetWindowUserPointer(window);
             
@@ -135,6 +146,7 @@ namespace Harmony {
             MouseMovedEvent event((float)xPos, (float)yPos);
             data.EventCallback(event);
         });
+
     }
 
     void MacWindow::Shutdown() {
