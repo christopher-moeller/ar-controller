@@ -4,6 +4,7 @@
 #include "Window.h"
 #include "Harmony/Events/ApplicationEvent.h"
 #include "Harmony/LayerStack.h"
+#include "Harmony/ImGui/ImGuiLayer.h"
 
 
 namespace Harmony {
@@ -31,6 +32,7 @@ namespace Harmony {
         bool m_Running = true;
         LayerStack m_LayerStack;
         static Application* s_Instance;
+        ImGuiLayer* m_ImGuiLayer;
     };
 
 }

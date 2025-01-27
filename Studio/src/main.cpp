@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Harmony.h"
+#include "imgui.h"
 
 
 class ExampleLayer : public Harmony::Layer {
@@ -17,6 +18,12 @@ public:
     
     void OnEvent(Harmony::Event& event) override {
         //HY_TRACE("{0}", event.ToString());
+    }
+    
+    virtual void OnImGuiRender() override {
+        ImGui::Begin("Test");
+        ImGui::Text("Hello World");
+        ImGui::End();
     }
 };
 

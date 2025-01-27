@@ -100,16 +100,16 @@ project "Studio"
         "Engine/vendor/Glad/include",
         "Engine/vendor/GLM/include",
         "Engine/src",
-        "%{prj.name}/vendor/ImGui/ImGui", 
-        "%{prj.name}/vendor/ImGui/ImGui/backends"
+        "Engine/vendor/ImGui/ImGui", 
+        "Engine/vendor/ImGui/ImGui/backends"
     }
 
     externalincludedirs { 
         "Engine/vendor/spdlog/include",
         "Engine/vendor/GLM/include",
         "Engine/vendor/Glad/include",
-        "%{prj.name}/vendor/ImGui/ImGui", 
-        "%{prj.name}/vendor/ImGui/ImGui/backends"
+        "Engine/vendor/ImGui/ImGui", 
+        "Engine/vendor/ImGui/ImGui/backends"
       } -- This is needed for XCode
 
     libdirs { 
