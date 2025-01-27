@@ -10,6 +10,9 @@ public:
     
     void OnUpdate() override {
         //HY_INFO("ExampleLayer::Update");
+        if(Harmony::Input::IsKeyPressed(HY_KEY_TAB)) {
+            HY_TRACE("Tab pressed");
+        }
     }
     
     void OnEvent(Harmony::Event& event) override {
