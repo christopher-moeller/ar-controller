@@ -29,7 +29,7 @@ project "Engine"
     files 
     { 
         "%{prj.name}/src/**.h", 
-        "%{prj.name}/src/**.cpp",
+        "%{prj.name}/src/**.cpp"
     }
 
     includedirs
@@ -37,6 +37,7 @@ project "Engine"
         "%{prj.name}/src",
         "%{prj.name}/vendor/GLFW/include",
         "%{prj.name}/vendor/spdlog/include",
+        "%{prj.name}/vendor/GLM/include",
         "%{prj.name}/vendor/Glad/include",
         "%{prj.name}/vendor/ImGui/ImGui", 
         "%{prj.name}/vendor/ImGui/ImGui/backends"
@@ -44,6 +45,7 @@ project "Engine"
 
     externalincludedirs { 
         "%{prj.name}/vendor/spdlog/include", 
+        "%{prj.name}/vendor/GLM/include",
         "%{prj.name}/vendor/GLFW/include",
         "%{prj.name}/vendor/Glad/include",
         "%{prj.name}/vendor/ImGui/ImGui", 
@@ -51,13 +53,15 @@ project "Engine"
     } -- This is needed for XCode
 
     libdirs {
-        "%{prj.name}/vendor/GLFW/lib"
+        "%{prj.name}/vendor/GLFW/lib",
+        "%{prj.name}/vendor/GLM/lib",
     }
 
     links {
         "GLFW",
         "Glad",
         "ImGui",
+        "GLM",
         "OpenGL.framework"            -- OpenGL on macOS
     }
     
@@ -94,6 +98,7 @@ project "Studio"
     {
         "Engine/vendor/spdlog/include",
         "Engine/vendor/Glad/include",
+        "Engine/vendor/GLM/include",
         "Engine/src",
         "%{prj.name}/vendor/ImGui/ImGui", 
         "%{prj.name}/vendor/ImGui/ImGui/backends"
@@ -101,6 +106,7 @@ project "Studio"
 
     externalincludedirs { 
         "Engine/vendor/spdlog/include",
+        "Engine/vendor/GLM/include",
         "Engine/vendor/Glad/include",
         "%{prj.name}/vendor/ImGui/ImGui", 
         "%{prj.name}/vendor/ImGui/ImGui/backends"
@@ -108,12 +114,14 @@ project "Studio"
 
     libdirs { 
         "bin/" .. outputdir .. "/Engine",
-        "Engine/vendor/GLFW/lib"
+        "Engine/vendor/GLFW/lib",
+        "Engine/vendor/GLM/lib",
      }
     links
     {
         "Engine",
         "GLFW",
+        "GLM",
         "OpenGL.framework"            -- OpenGL on macOS
     }
     
