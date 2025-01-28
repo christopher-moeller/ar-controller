@@ -8,6 +8,8 @@
 #include <functional>
 #include <utility>
 
+#include "Platform/OpenGL/OpenGLContext.h"
+
 
 #ifdef AR_DEBUG
     #define HY_ASSERT(x, ...) { if(!(x)) { HY_ERROR("Assertion Failed {0}", __VA_ARGS__); __builtin_debugtrap(); } }
