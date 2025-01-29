@@ -14,10 +14,6 @@ namespace Harmony {
 
     }
 
-    ImGuiLayer::~ImGuiLayer() {
-
-    }
-
     void ImGuiLayer::OnAttach() {
         
         // Setup ImGui context

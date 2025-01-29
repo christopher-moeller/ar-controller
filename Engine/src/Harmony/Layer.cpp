@@ -7,8 +7,4 @@ namespace Harmony {
         
     }
 
-    Layer::~Layer() {
-        
-    }
-
 }
