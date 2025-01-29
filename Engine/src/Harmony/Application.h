@@ -5,6 +5,7 @@
 #include "Harmony/Events/ApplicationEvent.h"
 #include "Harmony/LayerStack.h"
 #include "Harmony/ImGui/ImGuiLayer.h"
+#include "Harmony/Renderer/Shader.h"
 
 
 namespace Harmony {
@@ -25,6 +26,9 @@ namespace Harmony {
         inline Window& GetWindow() { return *m_Window; }
         
         inline static Application& Get() { return *s_Instance; }
+        
+        unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+        std::unique_ptr<Shader> m_Shader;
         
     private:
         bool OnWindowClose(WindowCloseEvent& e);

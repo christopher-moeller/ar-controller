@@ -33,7 +33,6 @@ class Sandbox : public Harmony::Application {
 public:
     Sandbox() {
         PushLayer(new ExampleLayer());
-        PushLayer(new Harmony::ImGuiLayer());
     }
     
 };
